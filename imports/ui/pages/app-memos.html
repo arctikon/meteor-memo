@@ -1,0 +1,33 @@
+<template name="App_memos">
+
+{{#if currentUser }}
+  <a style="margin-bottom: 30px;" class="btn btn-default _memoryModalShow" role="button">Add Memo</a>
+  {{#each arrayify categories}}
+  <div class="panel panel-default"> 
+    <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> 
+      <h4 class="panel-title"> 
+        <a href="#collapseListGroup{{index}}" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup1"> {{name}} </a>
+        <a data-category="{{name}}" class="btn btn-default _addWithCategory"><span class="glyphicon glyphicon-edit"></span>Add to Category</a>
+      <a data-category="{{name}}" class="btn btn-default _categoryDelete"><span class="glyphicon glyphicon-remove"></span>Delete</a>    
+      </h4> 
+      </div> 
+      <div class="panel-collapse collapse" role="tabpanel" id="collapseListGroup{{index}}" aria-labelledby="collapseListGroupHeading1" aria-expanded="false" style="height: 0px;">
+        <ul class="list-group">
+        {{#each memory in values}}
+          <li class="list-group-item">
+          {{memory.title}}
+          <a data-id="{{memory._id}}" data-title="{{memory.title}}" data-memo="{{memory.memo}}" data-category="{{memory.category}}" class="btn btn-default _memoryEdit"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+          <a data-id="{{memory._id}}" class="btn btn-default _memoryDelete"><span class="glyphicon glyphicon-remove"></span>Delete</a>
+          </li>
+          {{/each}}
+        </ul> 
+    </div> 
+  </div>
+  {{/each}}
+
+  {{> memoryModal}}
+  {{> memoryEditModal}}
+  {{> memoryDeleteModal}}
+  {{> categoryDeleteModal}}
+{{/if}}
+</template>

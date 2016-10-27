@@ -1,0 +1,1 @@
+import './app-mainpage.html';

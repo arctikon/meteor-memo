@@ -1,0 +1,59 @@
+<template name="memoryModal">
+  <div id="memoryModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="memory-form" id="memory-form" name="memory-form">
+      <div class="modal-header">
+        <button type="button" class="close closeMemoryModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Category</h4>
+      </div>
+      <div class="modal-body">
+        
+        <div style="margin-bottom: 50px;">
+          <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+          <div class="col-sm-10">
+            <input  class="form-control" style="margin-top: -10px;" placeholder="Title" name="title">
+          </div>
+        </div>
+        <div style="margin-bottom: 100px;"> 
+          <label for="inputEmail3" class="col-sm-2 control-label">Memo</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" style="margin-top: -10px;" placeholder="Memo" name="memo"> </textarea> 
+          </div>
+        </div>
+        {{#unless isDisabled}}
+        <div style="margin-bottom: 150px;">
+          <label for="inputEmail3" class="col-sm-2 control-label">Existed Categories</label>
+          <div class="col-sm-10">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{categoryName}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="height: auto;max-height: 100px;overflow-x: hidden;">
+                {{#each category in categories}}
+                  <li class="list-group-item _chooseCategory">{{category}}</li>
+                {{/each}}
+              </ul>
+            </div> 
+          </div>
+        </div>
+        {{/unless}}
+        <br>
+        <div style="margin-bottom: 200px;">
+          <label for="inputEmail3" class="col-sm-2 control-label">Category</label>
+          <div class="col-sm-10">
+            <input class="form-control _addCategory" style="margin-top: -10px;" {{isDisabledButton}} placeholder="Category" name="category" value="{{categoryName}}">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default closeMemoryModal" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary">Save changes</button>
+      </div>
+
+     </form>
+    </div>
+  </div>
+</div>
+</template>
